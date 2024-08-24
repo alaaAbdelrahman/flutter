@@ -72,7 +72,7 @@ class Register extends StatelessWidget {
                     color: Colors.red, msg: "There isnot Database Craeted");
               },
               child: const Text("Register"),
-            ),
+            )
           ],
         ),
       ),
