@@ -16,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const CustomTextFormField(
             keyboardType: TextInputType.emailAddress,
@@ -24,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
             contentPadding: 20,
           ),
           const SizedBox(
-            height: 100,
+            height: 50,
           ),
           const CustomTextFormField(
             keyboardType: TextInputType.visiblePassword,
