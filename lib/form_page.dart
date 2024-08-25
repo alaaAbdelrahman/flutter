@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
             controller:email ,
             keyboardType: TextInputType.emailAddress,
             readOnly: false,
-            text: "Email@gmail.com",
+            text: "username",
             contentPadding: 20,
           ),
           const SizedBox(
@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
 setState(() {
   LoginServices().postData(username: email.text, password: password.text).then((data){
     print(data);
-    showToast(color: Colors.red, msg: data ['token']);
+    showToast(color: Colors.red, msg: data ['token']??data["title"]);
 
   });
 
@@ -59,7 +59,7 @@ setState(() {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Are u New User"),
+              const Text("Are you a new user? "),
               TextButton(
                   onPressed: () {
                     Navigator.push(

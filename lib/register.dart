@@ -8,7 +8,7 @@ class Register extends StatelessWidget {
   TextEditingController username = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  TextEditingController conforimpassword = TextEditingController();
+  TextEditingController confirmpassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +38,18 @@ class Register extends StatelessWidget {
               readOnly: false,
               text: "password",
               contentPadding: 20.0,
+              obscureText: true,
               controller: password,
             ),
             const SizedBox(height: 20.0),
             CustomTextFormField(
               keyboardType: TextInputType.name,
               readOnly: false,
-              text: "Conforim password",
+              text: "Confirm password",
+              obscureText: true,
+
               contentPadding: 20.0,
-              controller: conforimpassword,
+              controller: confirmpassword,
             ),
             const SizedBox(height: 20.0),
             MaterialButton(
@@ -56,9 +59,10 @@ class Register extends StatelessWidget {
                     email: email.text,
                     username: username.text,
                     password: password.text,
-                    comfirepassword: conforimpassword.text);
-                showToast(
-                    color: Colors.red, msg: "There isnot Database Craeted");
+                    confirmpassword: confirmpassword.text).then((data){
+                  showToast(
+                      color: Colors.green, msg: data.toString());
+                });
               },
               child: const Text("Register"),
             )

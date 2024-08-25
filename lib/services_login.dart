@@ -18,17 +18,17 @@ class LoginServices {
 
 class RegisterServices {
   Dio dio = Dio();
-  Future<Map<String, dynamic>> postData(
+  Future postData(
       {required String email,
       required String username,
       required String password,
-      required String comfirepassword}) async {
+      required String confirmpassword}) async {
     try {
-      Response response = await dio.post("RegisterEndPoint", data: {
+      Response response = await dio.post("https://localhost:7270/Auth/register", data: {
         'username': username,
         'email': email,
         'password': password,
-        'confirmPassword': password,
+        'confirmPassword': confirmpassword,
       });
       return response.data;
     } on DioException catch (e) {
