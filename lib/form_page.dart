@@ -1,5 +1,6 @@
 import 'package:day_1/custom_text_form_field.dart';
 import 'package:day_1/register.dart';
+import 'package:day_1/services_login.dart';
 import 'package:day_1/show_toast.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +21,8 @@ class _LoginPageState extends State<LoginPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CustomTextFormField(
+           CustomTextFormField(
+            controller:email ,
             keyboardType: TextInputType.emailAddress,
             readOnly: false,
             text: "Email@gmail.com",
@@ -27,7 +31,8 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(
             height: 50,
           ),
-          const CustomTextFormField(
+           CustomTextFormField(
+            controller: password,
             keyboardType: TextInputType.visiblePassword,
             obscureText: true,
             readOnly: false,
@@ -37,7 +42,14 @@ class _LoginPageState extends State<LoginPage> {
           MaterialButton(
             color: Colors.blue,
             onPressed: () {
-              showToast(color: Colors.red, msg: "There is Database Craeted");
+setState(() {
+  LoginServices().postData(username: email.text, password: password.text).then((data){
+    print(data);
+    showToast(color: Colors.red, msg: data ['token']);
+
+  });
+
+});
             },
             child: const Text("Login"),
           ),
